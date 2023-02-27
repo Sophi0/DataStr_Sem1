@@ -199,5 +199,23 @@ public class MyArrayList {
 		}
 	}
 	
-					
+	/*
+	 * Izveidot funkciju, kas veic elementa izgūšanu pēc indeksa 
+	 * (veikt nepieciešamās pārbaudes).
+	 */
+		
+	//TODO create "retrieve" function
+		public char retrieve(int index) throws Exception{
+			if(isEmpty()) {
+			throw (new Exception("Array is empty ad it is not possible to retieve elements"));
+			}
+			else {
+				if(index < 0 || index >=elementCounter) {
+					throw (new Exception("Wrong index"));
+				}
+				else {
+					return elements[index];
+				}
+			}
+		}
 }
