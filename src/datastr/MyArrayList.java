@@ -210,12 +210,54 @@ public class MyArrayList {
 			throw (new Exception("Array is empty ad it is not possible to retieve elements"));
 			}
 			else {
-				if(index < 0 || index >=elementCounter) {
+				if(index < 0 || index >= elementCounter) {
 					throw (new Exception("Wrong index"));
 				}
 				else {
 					return elements[index];
 				}
 			}
+		}
+		
+	/*
+	 * Izveidot funkciju, kas veic elementa meklēšanu;
+	 */
+		
+		public boolean search(char inputElement) {
+			for(int i = 0; i < elementCounter; i++) {
+				if(elements[i] == inputElement) {	//TODO if there will be a reference type, return true(symbol will be find)
+					return true;
+				}
+			}
+			return false;	//pec for cikla return false bus, kas vins parbaudis
+		}
+		
+	//TODO retrieveNextNeighbour
+		
+	//TODO sort
+		
+	/*
+	 * Izveidot funkciju, kas veic saraksta izvadi;.
+	 */
+		
+	//TODO print
+		public void print() throws Exception{
+			if(isEmpty()) {
+				throw (new Exception("Array is empty ad it is not possible to print elements"));
+			}
+			else {
+				for(int i = 0; i < elementCounter; i++) {
+				System.out.print(elements[i] + " ");
+		}
+				System.out.println();
+			}
+		}
+		
+		
+	//TODO makeEmpty
+		public void makeEmpty() {
+			arraySize = DEFAULT_ARRAY_SIZE;
+			elementCounter = 0;
+			elements = new char[arraySize];
 		}
 }
