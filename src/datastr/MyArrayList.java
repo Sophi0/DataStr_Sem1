@@ -167,17 +167,37 @@ public class MyArrayList {
 		}
 		
 	/*
-	 * Izveidot funkciju, kas veic elementu pievienošanu pēc indeksa 
+	 * Izveidot funkciju, kas veic elementu dzēšanu pēc indeksa 
 	 * (veikt nepieciešamās pārbaudes).
 	 */
 		
 	
 	//TODO
-	//1.create a definition of function add
+	//1.create a definition of function remove
+		public void remove(int index) throws Exception{
 	//2.verify isEmpty
+			if(isEmpty()) {
+				throw (new Exception("Array is empty ad it is not possible to remove elements"));
+				}
+			else {
 	//3.verify the index - is it appropriate
+			if(index < 0 || index >= elementCounter) {
+				throw (new Exception("Wrong index"));
+			}
+			else {
 	//4.copy elements from index to end
-	//5.initialize the last element with NULL symbol (int value is 0)
+				for(int i = index; i < elementCounter - 1; i++) {
+					elements[i] = elements[i + 1];	//pa labi
+				}
+	//5.initialize the last element with NULL symbol (int value is 0)			
+				elements[elementCounter - 1] = 0; //NUL symbol
 	//6.decrease element
-
+				elementCounter--;
+	//for optimization
+	//elements[--elementCounter] = 0;			
+			}
+		}
+	}
+	
+					
 }
