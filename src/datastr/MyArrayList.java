@@ -1,7 +1,7 @@
 package datastr;
 
-public class MyArrayList {
-	private char[] elements;
+public class MyArrayList<T> {	//<T> - template
+	private T[] elements;
 	private final int DEFAULT_ARRAY_SIZE = 6;
 	private int arraySize = DEFAULT_ARRAY_SIZE;
 	private int elementCounter = 0;
@@ -13,7 +13,7 @@ public class MyArrayList {
 	
 	//no args(arguments) constructor
 	public MyArrayList() {
-		elements = new char[arraySize];	//izveidosim masivu, kur ir simboli, masivs ar 6 shunam (DEFAULT_ARRAY_SIZE)
+		elements = (T[]) new Object[arraySize];	//izveidosim masivu, kur ir simboli, masivs ar 6 shunam (DEFAULT_ARRAY_SIZE)
 	}
 	
 	//args constructor
@@ -22,7 +22,7 @@ public class MyArrayList {
 			arraySize = inputArraySize;
 	}
 		
-		elements = new char[arraySize];
+		elements = (T[]) new Object[arraySize];
 }
 	
 	/*Izveidot funkciju, kas pārbauda, vai masīvs nav jau pilns;
@@ -97,7 +97,7 @@ public class MyArrayList {
 			}
 			*/
 	//3.create new array
-			char[] newElements = new char[newArraySize];
+			T[] newElements = (T[])new Object[newArraySize];
 	//4.copy all elements from old array to the new array
 			for(int i = 0; i < elementCounter; i++) {
 				newElements[i] = elements[i];
@@ -114,7 +114,7 @@ public class MyArrayList {
 	 */
 		
 	//1.create a definition of function add
-		public void add(char newElement) {
+		public void add(T newElement) {
 	//2.verify if the array is full
 			if(isFull()) {	//nevajag neko iekavas rakstit, jo pata funkcija ir boolean tipa
 	//2.1.call an increaseArray() function
@@ -135,7 +135,7 @@ public class MyArrayList {
 		
 	//TODO
 	//1.create a definition of function add
-		public void add(char newElement, int index) throws Exception {
+		public void add(T newElement, int index) throws Exception {
 	//2.verify the index - is it appropriate
 			if(index >= 0 && index <= elementCounter) {
 				
@@ -189,8 +189,8 @@ public class MyArrayList {
 				for(int i = index; i < elementCounter - 1; i++) {
 					elements[i] = elements[i + 1];	//pa labi
 				}
-	//5.initialize the last element with NULL symbol (int value is 0)			
-				elements[elementCounter - 1] = 0; //NUL symbol
+	//5.initialize the last element to NULL reference			
+				elements[elementCounter - 1] = null; //NUL symbol
 	//6.decrease element
 				elementCounter--;
 	//for optimization
@@ -205,7 +205,7 @@ public class MyArrayList {
 	 */
 		
 	//TODO create "retrieve" function
-		public char retrieve(int index) throws Exception{
+		public T retrieve(int index) throws Exception{
 			if(isEmpty()) {
 			throw (new Exception("Array is empty ad it is not possible to retieve elements"));
 			}
@@ -223,9 +223,9 @@ public class MyArrayList {
 	 * Izveidot funkciju, kas veic elementa meklēšanu;
 	 */
 		
-		public boolean search(char inputElement) {
+		public boolean search(T inputElement) {
 			for(int i = 0; i < elementCounter; i++) {
-				if(elements[i] == inputElement) {	//TODO if there will be a reference type, return true(symbol will be find)
+				if(elements[i].equals(inputElement)) {	
 					return true;
 				}
 			}
@@ -236,7 +236,7 @@ public class MyArrayList {
 		/*
 		 * Izveidot funkciju, kas kā argumentu saņem elementu un atgriež nākamo elementu (veikt nepieciešamās pārbaudes).
 		 */
-		public char[] retrieveNextNeighbour(char inputElement) throws Exception {
+		public T[] retrieveNextNeighbour(T inputElement) throws Exception {
 			//vispirms apskatisim vai vispar ir tas elements
 			if(search(inputElement)) {
 				int howManySearchedElements = 0;
@@ -246,14 +246,14 @@ public class MyArrayList {
 						howManySearchedElements++;
 				}
 			}
-				if(elements[elementCounter - 1] == inputElement) {
+				if(elements[elementCounter - 1].equals(inputElement)) {
 					howManySearchedElements--;
 				}
 				
-				char[] nextNeighbour = new char[howManySearchedElements];
+				T[] nextNeighbour = (T[])new Object[howManySearchedElements];
 				int indexForNeighbors = 0;
 				for(int i = 0; i < elementCounter - 1; i++) {
-					if(elements[i] == inputElement) {
+					if(elements[i].equals(inputElement)) {
 					nextNeighbour[indexForNeighbors] = elements[i + 1];
 					indexForNeighbors++;
 				}
@@ -271,53 +271,44 @@ public class MyArrayList {
 		/*
 		 * Izveidot funkciju, kas veic elementu kārtošanu.
 		 */
-		public char[] sort(SortingType type) throws Exception {
+		public T[] sort(SortingType type) throws Exception {
 			if(isEmpty()) {
 				throw (new Exception("Array is empty ad it is not possible to sort"));
 			}
 			else {
-				char[] sortArray = new char[elementCounter];
+				T[] sortArray = (T[])new Object[elementCounter];
 				
 				for(int i = 0; i < elementCounter; i++) {
 					sortArray[i] = elements[i];
 				}
 				
-				//ascending order
+				int sortVariable = 1;	//DESC	
 				if(type == SortingType.ASC) {
+					sortVariable = -1;
+				}
+						
+
 					for(int i = 0; i < elementCounter; i++) {
 						for(int j = 0; j < elementCounter; j++) {
-							if(sortArray[i] < sortArray[j]) { 
+							//if(sortArray[i] < sortArray[j]) 
+							if(((Comparable)(sortArray[i])).compareTo(sortArray[j]) == -1) { 
 								// 0  6
 								//[a] [x]
 								//temp = a
 								//samainam vietas
 								//[x] [a]
-								char temp = sortArray[i];
+								T temp = sortArray[i];
 								sortArray[i] = sortArray[j];
 								sortArray[j] = temp;
 							}
 						}
 					}
-				}
-				//descending order
-				else if(type == SortingType.DESC) {
-						for(int i = 0; i < elementCounter; i++) {
-							for(int j = 0; j < elementCounter; j++) {
-								if(sortArray[i] > sortArray[j]) { 
-					
-									char temp = sortArray[i];
-									sortArray[i] = sortArray[j];
-									sortArray[j] = temp;
-								}
-							}
-						}
-					}
-				else {
-					throw (new Exception("Wrong sorting type"));
-				}
 				return sortArray;
-		}
-	}
+					}
+				}
+			
+		
+			
 
 	
 		
@@ -341,7 +332,7 @@ public class MyArrayList {
 		public void makeEmpty() {
 			arraySize = DEFAULT_ARRAY_SIZE;
 			elementCounter = 0;
-			elements = new char[arraySize];
+			elements = (T[])new Object[arraySize];
 			System.gc();	//garbage collector
 		}
 }
