@@ -286,7 +286,7 @@ public class MyArrayList {
 				if(type == SortingType.ASC) {
 					for(int i = 0; i < elementCounter; i++) {
 						for(int j = 0; j < elementCounter; j++) {
-							if(sortArray[i] > sortArray[j]) { 
+							if(sortArray[i] < sortArray[j]) { 
 								// 0  6
 								//[a] [x]
 								//temp = a
@@ -303,7 +303,7 @@ public class MyArrayList {
 				else if(type == SortingType.DESC) {
 						for(int i = 0; i < elementCounter; i++) {
 							for(int j = 0; j < elementCounter; j++) {
-								if(sortArray[i] < sortArray[j]) { 
+								if(sortArray[i] > sortArray[j]) { 
 					
 									char temp = sortArray[i];
 									sortArray[i] = sortArray[j];
@@ -342,5 +342,6 @@ public class MyArrayList {
 			arraySize = DEFAULT_ARRAY_SIZE;
 			elementCounter = 0;
 			elements = new char[arraySize];
+			System.gc();	//garbage collector
 		}
 }
