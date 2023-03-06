@@ -1,5 +1,7 @@
 package datastr;
 
+import model.Student;
+
 public class MyArrayList<T> {	//<T> - template
 	private T[] elements;
 	private final int DEFAULT_ARRAY_SIZE = 6;
@@ -290,7 +292,7 @@ public class MyArrayList<T> {	//<T> - template
 					for(int i = 0; i < elementCounter; i++) {
 						for(int j = 0; j < elementCounter; j++) {
 							//if(sortArray[i] < sortArray[j]) 
-							if(((Comparable)(sortArray[i])).compareTo(sortArray[j]) == sortVariable) { 
+							if(((Comparable)(sortArray[i])).compareTo(sortArray[j]) == sortVariable) { //apskatijam student.java failu, tur lejaa bus uzrakstits compareTo funkcija, ka ari bus implementets Comparable<Student>
 								// 0  6
 								//[a] [x]
 								//temp = a
