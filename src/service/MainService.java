@@ -35,7 +35,7 @@ public class MainService {
 		charList.add('a');	//z g b d z a
 		charList.add('z');	//z g b d z a z increase() will be called
 		
-		System.out.println(Arrays.toString(charList.retrieveNextNeighbour('z')));	//g a
+		System.out.println(Arrays.toString(charList.retrieveNextNeighbour('g')));	//g a
 		
 		System.out.println(charList.sort(SortingType.ASC)); //a b d g z z z
 		
@@ -44,6 +44,17 @@ public class MainService {
 		//charList.print();	//empty array
 		charList.add('d'); 	//d
 		charList.print(); //d
+		
+		
+		System.out.println("---------------");
+		//read from file
+		MyArrayList fileList = getArrayElementsFromFile("resources/numbers (1).txt");
+		
+		fileList.print();
+		fileList.add('z');
+		fileList.remove(2);
+		fileList.print();
+		System.out.println(Arrays.toString(fileList.sort(SortingType.ASC)));
 		}
 		
 		catch(Exception e) {
@@ -54,6 +65,7 @@ public class MainService {
 	public static MyArrayList getArrayElementsFromFile(String path) throws FileNotFoundException{
 		File myFile = new File(path); 
 		FileInputStream myInputStream = new FileInputStream(myFile);
+		
 		Scanner myScanner = new Scanner(myInputStream);
 		MyArrayList listFromFile = new MyArrayList();
 		
