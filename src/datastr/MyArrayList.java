@@ -116,7 +116,7 @@ public class MyArrayList {
 	//1.create a definition of function add
 		public void add(char newElement) {
 	//2.verify if the array is full
-			if(isFull()) {	//nevajag neko iekavas rakstit, jo pata funkcijair boolean tipa
+			if(isFull()) {	//nevajag neko iekavas rakstit, jo pata funkcija ir boolean tipa
 	//2.1.call an increaseArray() function
 				increaseArray();
 			}
@@ -233,6 +233,39 @@ public class MyArrayList {
 		}
 		
 	//TODO retrieveNextNeighbour
+		/*
+		 * Izveidot funkciju, kas kā argumentu saņem elementu un atgriež nākamo elementu (veikt nepieciešamās pārbaudes).
+		 */
+		public char[] retrieveNextNeighbour(char inputElement) throws Exception {
+			//vispirms apskatisim vai vispar ir tas elements
+			if(search(inputElement)) {
+				int howManySearchedElements = 0;
+			
+				for(int i = 0; i < elementCounter; i++) {
+					if(elements[i] == inputElement) {
+						howManySearchedElements++;
+				}
+			}
+				if(elements[elementCounter - 1] == inputElement) {
+					howManySearchedElements--;
+				}
+				
+				char[] nextNeighbour = new char[howManySearchedElements];
+				
+				for(int i = 0; i < elementCounter; i++) {
+					int indexForNeighbors = 0;
+					nextNeighbour[indexForNeighbors] = elements[i + 1];
+					indexForNeighbors++;
+				}
+		
+				return nextNeighbour;
+		}
+		//false case
+			else {
+				throw(new Exception("Input element is not found in the array")); //metam iznemumu
+			}
+		}
+		
 		
 	//TODO sort
 		
