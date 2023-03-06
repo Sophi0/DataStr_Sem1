@@ -2,6 +2,7 @@ package service;
 
 import java.io.File;	//lai importet sho, vajag uzrakstit keyword 'File' un uzpiest ctrl+space+enter
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -50,7 +51,7 @@ public class MainService {
 		}
 	}
 	
-	public static MyArrayList getArrayElementsFromFile(String path) throws FileNotFound{
+	public static MyArrayList getArrayElementsFromFile(String path) throws FileNotFoundException{
 		File myFile = new File(path); 
 		FileInputStream myInputStream = new FileInputStream(myFile);
 		Scanner myScanner = new Scanner(myInputStream);
