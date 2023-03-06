@@ -1,6 +1,9 @@
 package service;
 
+import java.io.File;	//lai importet sho, vajag uzrakstit keyword 'File' un uzpiest ctrl+space+enter
+import java.io.FileInputStream;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import datastr.MyArrayList;
 import datastr.SortingType;
@@ -45,6 +48,21 @@ public class MainService {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static MyArrayList getArrayElementsFromFile(String path) throws FileNotFound{
+		File myFile = new File(path); 
+		FileInputStream myInputStream = new FileInputStream(myFile);
+		Scanner myScanner = new Scanner(myInputStream);
+		MyArrayList listFromFile = new MyArrayList();
+		
+		while(myScanner.hasNextLine()) {
+			String line = myScanner.nextLine();
+			char element = line.charAt(0);
+			listFromFile.add(element);
+		}
+		myScanner.close();
+		return listFromFile;
 	}
 
 }
