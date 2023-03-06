@@ -268,12 +268,62 @@ public class MyArrayList {
 		
 		
 	//TODO sort
+		/*
+		 * Izveidot funkciju, kas veic elementu kārtošanu.
+		 */
+		public char[] sort(SortingType type) throws Exception {
+			if(isEmpty()) {
+				throw (new Exception("Array is empty ad it is not possible to sort"));
+			}
+			else {
+				char[] sortArray = new char[elementCounter];
+				
+				for(int i = 0; i < elementCounter; i++) {
+					sortArray[i] = elements[i];
+				}
+				
+				//ascending order
+				if(type == SortingType.ASC) {
+					for(int i = 0; i < elementCounter; i++) {
+						for(int j = 0; j < elementCounter; j++) {
+							if(sortArray[i] > sortArray[j]) { 
+								// 0  6
+								//[a] [x]
+								//temp = a
+								//samainam vietas
+								//[x] [a]
+								char temp = sortArray[i];
+								sortArray[i] = sortArray[j];
+								sortArray[j] = temp;
+							}
+						}
+					}
+				}
+				//descending order
+				else if(type == SortingType.DESC) {
+						for(int i = 0; i < elementCounter; i++) {
+							for(int j = 0; j < elementCounter; j++) {
+								if(sortArray[i] < sortArray[j]) { 
+					
+									char temp = sortArray[i];
+									sortArray[i] = sortArray[j];
+									sortArray[j] = temp;
+								}
+							}
+						}
+					}
+				else {
+					throw (new Exception("Wrong sorting type"));
+				}
+				return sortArray;
+		}
+	}
+
+	
 		
 	/*
 	 * Izveidot funkciju, kas veic saraksta izvadi;.
 	 */
-		
-	//TODO print
 		public void print() throws Exception{
 			if(isEmpty()) {
 				throw (new Exception("Array is empty ad it is not possible to print elements"));
