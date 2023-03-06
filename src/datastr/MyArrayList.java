@@ -287,11 +287,10 @@ public class MyArrayList<T> {	//<T> - template
 					sortVariable = -1;
 				}
 						
-
 					for(int i = 0; i < elementCounter; i++) {
 						for(int j = 0; j < elementCounter; j++) {
 							//if(sortArray[i] < sortArray[j]) 
-							if(((Comparable)(sortArray[i])).compareTo(sortArray[j]) == -1) { 
+							if(((Comparable)(sortArray[i])).compareTo(sortArray[j]) == sortVariable) { 
 								// 0  6
 								//[a] [x]
 								//temp = a
@@ -307,10 +306,6 @@ public class MyArrayList<T> {	//<T> - template
 					}
 				}
 			
-		
-			
-
-	
 		
 	/*
 	 * Izveidot funkciju, kas veic saraksta izvadi;.

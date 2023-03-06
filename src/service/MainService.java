@@ -13,7 +13,9 @@ public class MainService {
 
 	public static void main(String[] args) {
 		MyArrayList charList = new MyArrayList();
+		
 		try {
+			
 		charList.add('a');	//a
 		charList.add('g');	//a g
 		charList.add('b');	//a g b
@@ -55,6 +57,15 @@ public class MainService {
 		fileList.remove(2);
 		fileList.print();
 		System.out.println(Arrays.toString(fileList.sort(SortingType.ASC)));
+		
+		MyArrayList<String> stringList = new MyArrayList<>();
+		stringList.add("Sofja");
+		stringList.add("Janis");
+		stringList.add("Zanis", 0);
+		stringList.print();	//Sofja Jānis Žānis
+		System.out.println(Arrays.toString(stringList.sort(SortingType.DESC)));
+		stringList.remove(1);
+		stringList.print(); //Sofja Žānis
 		}
 		
 		catch(Exception e) {
