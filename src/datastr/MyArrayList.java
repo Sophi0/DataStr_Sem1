@@ -251,13 +251,13 @@ public class MyArrayList {
 				}
 				
 				char[] nextNeighbour = new char[howManySearchedElements];
-				
-				for(int i = 0; i < elementCounter; i++) {
-					int indexForNeighbors = 0;
+				int indexForNeighbors = 0;
+				for(int i = 0; i < elementCounter - 1; i++) {
+					if(elements[i] == inputElement) {
 					nextNeighbour[indexForNeighbors] = elements[i + 1];
 					indexForNeighbors++;
 				}
-		
+				}
 				return nextNeighbour;
 		}
 		//false case
