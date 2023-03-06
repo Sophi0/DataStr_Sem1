@@ -41,7 +41,7 @@ public class MainService {
 		
 		System.out.println(Arrays.toString(charList.retrieveNextNeighbour('g')));	//g a
 		
-		System.out.println(charList.sort(SortingType.ASC)); //a b d g z z z
+		System.out.println(Arrays.toString(charList.sort(SortingType.ASC))); //a b d g z z z
 		
 		charList.print();//z g b d z a z
 		charList.makeEmpty();	//empty array
