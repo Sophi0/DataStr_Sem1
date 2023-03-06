@@ -46,7 +46,7 @@ public class MainService {
 		charList.print(); //d
 		
 		
-		System.out.println("---------------");
+		System.out.println("----------------");
 		//read from file
 		MyArrayList fileList = getArrayElementsFromFile("resources/numbers (1).txt");
 		
